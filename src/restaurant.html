@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="theme-color" content="#FFA500">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" media="screen" href="css/styles.min.css" type="text/css">
+  <link rel="stylesheet" media="screen" href="css/lit.min.css" type="text/css">
+  <link rel="stylesheet" media="screen" href="css/pretty-checkbox.min.css" type="text/css">
+  <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css">
+  <title>Restaurant Info</title>
+</head>
+
+<body class="inside">
+
+  <header>
+    <nav>
+      <a href="/">
+        <div class="home-icon">
+          <i class="icon mdi mdi-arrow-left"></i>
+          <i class="icon mdi mdi-home "></i>
+        </div>
+      </a>
+
+      <h1>
+        Restaurant Reviews
+      </h1>
+    </nav>
+  </header>
+  <hr>
+  <main id="maincontent">
+
+    <section id="map-container" class="first-show">
+      <div id="map" role="application" aria-hidden="true" title="Restaurant Map"></div>
+    </section>
+
+    <hr>
+
+    <section id="restaurant-container">
+
+      <h1 id="restaurant-name" title="Restaurant Name"></h1>
+      <img id="restaurant-img" src="/img/restaurant-placeholder.webp">
+      <p id="restaurant-cuisine" title="Restaurant Cuisine"></p>
+      <p id="restaurant-address" title="Restaurant Address"></p>
+      <table id="restaurant-hours" title="Operating Hours"></table>
+    </section>
+
+    <hr>
+
+    <section id="reviews-container">
+      <ul id="reviews-list" title="Restaurant Reviews"></ul>
+      <div>
+        <div>
+          <h3>Add Review</h3>
+        </div>
+        <div>
+          <div class="row">
+            <div class="6 col">
+              Name
+              <input class="card w-100" type="text" id="post-review-name" placeholder="John Doe">
+            </div>
+            <div class="6 col">
+              Rating
+              <select class="card w-100" id="post-review-rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            Message
+            <textarea class="card w-100" id="post-review-message" placeholder="Your Review"></textarea>
+            <div id="fav-check"></div>
+          </div>
+          <div class="row">
+            <br>
+            <a onclick="reviewRestaurant(restaurant)" class="add-review btn">Add Review</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer">
+    Copyright (c) 2017
+    <a href="/">
+      <strong>Restaurant Reviews</strong>
+    </a> All Rights Reserved.
+  </footer>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/idb.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/dbhelper.min.js"></script>
+  <script type="text/javascript" src="js/restaurant_info.min.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_tKbW6A5pQ-eupxI56myUnHLqYCzOjKo&libraries=places&callback=initMap"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+{
+  "dir": "ltr",
+  "lang": "en-US",
+  "name": "Restaurant Reviews",
+  "short_name": "Rest Reviews",
+  "description": "Mobile Web Specialist Certification Course Project",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#3397db",
+  "related_applications": [{
+    "platform": "web"
+  }]
+}
