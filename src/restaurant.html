@@ -40,17 +40,21 @@
 
     <section id="restaurant-container">
 
-      <h1 id="restaurant-name" title="Restaurant Name"></h1>
-      <img id="restaurant-img" src="/img/restaurant-placeholder.webp">
-      <p id="restaurant-cuisine" title="Restaurant Cuisine"></p>
-      <p id="restaurant-address" title="Restaurant Address"></p>
-      <table id="restaurant-hours" title="Operating Hours"></table>
+      <h2 id="restaurant-name" tabindex="1" title="Restaurant Name"></h2>
+      <img id="restaurant-img" tabindex="2" src="/img/restaurant-placeholder.webp">
+      <p id="restaurant-cuisine" tabindex="3" title="Restaurant Cuisine"></p>
+      <p id="restaurant-address" tabindex="4" title="Restaurant Address"></p>
+      <table id="restaurant-hours" tabindex="5" title="Operating Hours"></table>
     </section>
 
     <hr>
 
     <section id="reviews-container">
-      <ul id="reviews-list" title="Restaurant Reviews"></ul>
+      <h2>Reviews</h2>
+      <hr>
+      <ul id="reviews-list" title="Restaurant Reviews">
+
+      </ul>
       <div>
         <div>
           <h3>Add Review</h3>
@@ -81,6 +85,8 @@
             <br>
             <a onclick="reviewRestaurant(restaurant)" class="add-review btn">Add Review</a>
           </div>
+          <br>
+          <br>
         </div>
       </div>
     </section>

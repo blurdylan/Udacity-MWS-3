@@ -16,9 +16,6 @@ window.onload = function() {
           review.rating,
           review.comments
         );
-
-        // Delete from DB
-        DBHelper.removeReviewFromDb(review);
       });
     });
   }
@@ -191,10 +188,7 @@ const fillRestaurantHoursHTML = (
  */
 const fillReviewsHTML = (reviews = self.reviews) => {
   const container = document.getElementById("reviews-container");
-  const title = document.createElement("h2");
-  const divider = document.createElement("hr");
-  title.innerHTML = "Reviews";
-  container.appendChild(title);
+  const divider = document.createElement("br");
 
   if (!reviews) {
     const noReviews = document.createElement("p");
@@ -202,6 +196,11 @@ const fillReviewsHTML = (reviews = self.reviews) => {
     container.appendChild(noReviews);
     return;
   }
+
+  // To put the earliest reviews at the bottom
+  reviews.reverse();
+
+  // Generate the reviews
   const ul = document.getElementById("reviews-list");
   ul.appendChild(divider);
   reviews.forEach(review => {
@@ -272,8 +271,53 @@ const reviewRestaurant = (restaurant = self.restaurant) => {
 
   // Control validate Entries
   if (name != "" && message != "") {
-    DBHelper.postReview(id, name, rating, message);
+    // Post review
+    let reviewCreated = {
+      restaurant_id: id,
+      name: name,
+      rating: rating,
+      comments: message
+    };
+
+    axios
+      .post(DBHelper.REVIEWS_URL, reviewCreated)
+      .then(function(response) {
+        // remove thsi later
+        //DBHelper.addReviewToDb(reviewCreated);
+        console.log(`${name} your review was successfully posted`, response);
+
+        // Fetch and add reviews to window object
+        DBHelper.fetchReviewsById(restaurant.id)
+          .then(reviews => {
+            self.reviews = reviews;
+            resetReviews(reviews);
+            fillReviewsHTML();
+          })
+          .catch(error => {
+            alert(error);
+          });
+      })
+      .catch(function(error) {
+        if (error) {
+          // DBHelper.addReviewToDb(reviewCreated);
+          console.log("review added to database. Will be posted when online");
+        }
+        console.log(error);
+      });
   } else console.log("You are trying to post an empty review.");
+};
+
+/**
+ * Clear current restaurants, their HTML and remove their map markers.
+ */
+const resetReviews = reviews => {
+  // Remove all restaurants
+  self.reviews = [];
+  const ul = document.getElementById("reviews-list");
+  ul.innerHTML = "";
+
+  // Remove all map markers
+  self.reviews = reviews;
 };
 
 function favResto(idRestaurant) {

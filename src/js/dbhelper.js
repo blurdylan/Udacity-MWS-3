@@ -12,13 +12,6 @@ class DBHelper {
     return `http://localhost:${port}/`;
   }
 
-  /**
-   * Restaurants endpoint URL.
-   */
-  static get RESTAURANTS_URL() {
-    return `${this.BASE_URL}restaurants/`;
-  }
-
   static get REVIEWS_URL() {
     return `${this.BASE_URL}reviews/`;
   }
@@ -68,7 +61,7 @@ class DBHelper {
   static fetchReviewsById(restaurant_id) {
     return new Promise((resolve, reject) => {
       // fetch from server
-      console.log(`${this.REVIEWS_URL}?restaurant_id=${restaurant_id}`);
+      // Cache.add(`${this.REVIEWS_URL}?restaurant_id=${restaurant_id}`);
       this._fetchObject(`${this.REVIEWS_URL}?restaurant_id=${restaurant_id}`)
         .then(reviews => {
           resolve(reviews);
@@ -268,7 +261,7 @@ class DBHelper {
       .post(this.REVIEWS_URL, reviewCreated)
       .then(function(response) {
         // remove thsi later
-        DBHelper.addReviewToDb(reviewCreated);
+        //DBHelper.addReviewToDb(reviewCreated);
         console.log(`${name} your review was successfully posted`, response);
       })
       .catch(function(error) {
@@ -296,8 +289,8 @@ class DBHelper {
    * Incase there is no photo, return a placeholder.
    */
   static thumbSrcForRestaurant(restaurant) {
-    if (restaurant.photograph) {
-      return `./img/${restaurant.photograph}-thumb.jpg`;
+    if (restaurant.id) {
+      return `./img/${restaurant.id}-thumb.jpg`;
     } else {
       return "./img/restaurant-placeholder-thumb.jpg";
     }
@@ -366,8 +359,6 @@ class DBHelper {
     this.dbPromise.then(db => {
       const tx = db.transaction(this.DB_REVIEW_STORE_NAME, "readwrite");
       const store = tx.objectStore(this.DB_REVIEW_STORE_NAME);
-      console.log(store);
-
       store.delete(review.name);
       return tx.complete;
     });

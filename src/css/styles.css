@@ -136,7 +136,7 @@ nav h1 a {
 /* ====================== Map ====================== */
 
 #map {
-  height: 0px;
+  height: 0;
   width: 100%;
   background-color: #ccc;
   transition: height 500ms ease;
@@ -178,11 +178,10 @@ nav h1 a {
 }
 
 .button-menu {
-  /*margin-top: 50%;*/
 }
 
-.first-img {
-  width: 100%;
+.view-map-button {
+  text-align: center;
 }
 
 #restaurants-list li h1 {

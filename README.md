@@ -1,6 +1,6 @@
 # Udacity MWS Stage 3
 
-A Udacity Mobile Web Specialist Project
+A Udacity Mobile Web Specialist Project 3
 
 ## Installation
 
@@ -16,10 +16,9 @@ A Udacity Mobile Web Specialist Project
 
 ## Issues
 
-* https://browsersync.io/ is a new feature added to this and these causes conflicts with the cache.
-  > To solve this you have to clear cache each time you refresh
+No major issues observed – Yet :)
 
 ## Todo
 
+* [x] Alerts when needed
 * [] Proper error handling system
-* [] Alerts when needed

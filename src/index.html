@@ -10,53 +10,37 @@
 </head>
 
 <body>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-  <script type="text/javascript" charset="utf-8" src="js/idb.min.js"></script>
 
-  <script async rel="preload" as="script" src="js/dbhelper.min.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <header>
-    <a href="#maincontent" class="skip-link">Skip to main content</a>
     <nav>
       <h1>
         Restaurant Reviews
       </h1>
     </nav>
   </header>
-  <script async rel="preload" as="script" src="js/main.min.js"></script>
+
 
 
   <main id="maincontent" tabindex="-1">
     <hr>
     <section id="map-container" class="first-show">
       <div id="map" role="application" aria-hidden="true" title="Restaurants Map"></div>
+      <div class="card view-map-button">
+        <a href="#" class="btn" onclick="openMap()">View Restaurants Map</a>
+      </div>
     </section>
     <hr>
     <section>
-      <div class="card">
-        <img class="first-img" id="first-img" src="img/first-img.jpg" alt="A restaurant's image">
-      </div>
-
 
       <link rel="preload" as="style" onload="this.rel='stylesheet'" media="screen" href="css/lit.min.css" type="text/css">
       <link rel="preload" as="style" onload="this.rel='stylesheet'" media="screen" href="css/styles.min.css" type="text/css">
 
-      <div class="button-menu">
-        <hr>
-        <div class="row card">
-          <div class="col btn primary">View Restaurants</div>
-          <div id="view-map" class="col primary btn">
-          </div>
-        </div>
-        <div class="row card">
-          <div class="col btn">About App</div>
-          <div class="col btn">Open Github</div>
-        </div>
-        <hr>
-      </div>
-
       <div class="filter-options">
+
+        <script async rel="preload" as="script" src="js/main.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/idb.min.js"></script>'
 
         <div id="filter-restaurants" class="card">
           <h4>Filter Restaurants</h4>
@@ -74,19 +58,9 @@
           </div>
         </div>
       </div>
-
       <ul id="restaurants-list"></ul>
-
     </section>
   </main>
-
-
-
-
-
-
-  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnF2HiWDQqIGB6NXly6J75dvfKEXjYs8w&libraries=places&callback=viewMap"></script>
-
   <footer id="footer">
     Copyright (c) 2017
     <a href="/">
@@ -96,7 +70,12 @@
 </body>
 
 
-<link rel="stylesheet" media="screen" href="css/pretty-checkbox.min.css" type="text/css">
+<link rel="stylesheet" href="css/pretty-checkbox.min.css" type="text/css">
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css">
+
+<script async rel="preload" as="script" src="js/dbhelper.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnF2HiWDQqIGB6NXly6J75dvfKEXjYs8w&libraries=places&callback=initMap"></script>
 
 </html>

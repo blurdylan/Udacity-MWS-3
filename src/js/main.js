@@ -70,10 +70,15 @@ const fillCuisinesHTML = (cuisines = self.cuisines) => {
   });
 };
 
+const openMap = () => {
+  const gmap = document.getElementById("map");
+  gmap.style.height = "400px";
+};
+
 /**
  * Initialize Google map, called from HTML.
  */
-const initMap = () => {
+window.initMap = () => {
   const gmap = document.getElementById("map");
   gmap.onclick = null;
 
@@ -86,28 +91,6 @@ const initMap = () => {
     center: loc,
     scrollwheel: false
   });
-  self.markers = [];
-
-  updateRestaurants();
-};
-
-/**
- * OPEN MAP on click
- * This greatly improves first meaningful paint
- * in the PWA performance.
- */
-window.viewMap = () => {
-  const viewmapdiv = document.getElementById("view-map");
-  viewmapdiv.innerHTML = "View Map";
-
-  viewmapdiv.onclick = () => {
-    const map = document.getElementById("map");
-    map.style.height = "500px";
-    const fimage = document.getElementById("first-img");
-    fimage.remove();
-    initMap();
-  };
-
   self.markers = [];
 
   updateRestaurants();
@@ -185,8 +168,6 @@ const createRestaurantHTML = restaurant => {
   image.setAttribute("data-src", DBHelper.thumbSrcForRestaurant(restaurant));
   li.append(image);
 
-  observer.observe();
-
   const name = document.createElement("h4");
   name.innerHTML = restaurant.name;
   li.append(name);
@@ -236,6 +217,10 @@ const createRestaurantHTML = restaurant => {
   favCheck.appendChild(iconWrapper);
 
   li.append(favCheck);
+
+  setTimeout(() => {
+    observer.observe();
+  }, 0);
 
   return li;
 };
