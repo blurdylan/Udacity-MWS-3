@@ -10,7 +10,6 @@ const observer = lozad(); // lazy loads elements with default selector as '.loza
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener("DOMContentLoaded", event => {
-  fillRestaurantsHTML();
   fetchNeighborhoods();
   fetchCuisines();
 });

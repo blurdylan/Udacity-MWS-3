@@ -4,22 +4,48 @@ let restaurant;
 let map;
 let reviews;
 
-window.onload = function() {
+function updateOnlineStatus() {
+  console.log("User is online");
   if (navigator.onLine) {
     DBHelper.getReviewsFromDb().then(reviews => {
-      // Take the unposted reviews
-      reviews.forEach(review => {
-        // Post to server
-        DBHelper.postReview(
-          review.restaurant_id,
-          review.name,
-          review.rating,
-          review.comments
-        );
-      });
+      if (reviews) {
+        // Take the unposted reviews
+        reviews.forEach(review => {
+          // Post to server
+          DBHelper.postReview(
+            review.restaurant_id,
+            review.name,
+            review.rating,
+            review.comments
+          );
+        });
+
+        var resto = self.restaurant;
+        console.log(resto.id);
+
+        // Fetch and add reviews to window object
+        DBHelper.fetchReviewsById(resto.id)
+          .then(reviews => {
+            self.reviews = reviews;
+            resetReviews(reviews);
+            fillReviewsHTML();
+          })
+          .catch(error => {
+            alert(error);
+          });
+      }
     });
   }
-};
+}
+
+function updateOfflineStatus() {
+  console.log("User is offline");
+}
+
+window.addEventListener("online", updateOnlineStatus);
+window.addEventListener("offline", updateOfflineStatus);
+
+window.onload = function() {};
 
 /**
  * Initialize Google map, called from HTML.
@@ -299,7 +325,7 @@ const reviewRestaurant = (restaurant = self.restaurant) => {
       })
       .catch(function(error) {
         if (error) {
-          // DBHelper.addReviewToDb(reviewCreated);
+          DBHelper.addReviewToDb(reviewCreated);
           console.log("review added to database. Will be posted when online");
         }
         console.log(error);

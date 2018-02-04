@@ -347,7 +347,7 @@ class DBHelper {
     this.dbPromise.then(db => {
       const tx = db.transaction(this.DB_REVIEW_STORE_NAME, "readwrite");
       const store = tx.objectStore(this.DB_REVIEW_STORE_NAME);
-      store.put(review, review.name);
+      store.put(review);
       return tx.complete;
     });
   }
